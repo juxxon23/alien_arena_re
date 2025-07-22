@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cybonr77a25yi"]
+[gd_scene load_steps=4 format=3 uid="uid://cybonr77a25yi"]
 
 [ext_resource type="Script" uid="uid://rp7mxv5ygif5" path="res://src/rtl_timer.gd" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://c1jg4h4wvda62" path="res://src/hud.gd" id="1_oo0fn"]
+[ext_resource type="Script" uid="uid://dl4fnr3cgvj0e" path="res://src/timer.gd" id="3_5ysmq"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -9,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_oo0fn")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -66,6 +69,8 @@ script = ExtResource("1_ahhtf")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-autostart = true
+script = ExtResource("3_5ysmq")
 
-[connection signal="timeout" from="Timer" to="RTLTimer" method="_on_timer_timeout"]
+[connection signal="countdown_timer" from="." to="Timer" method="_on_hud_countdown_timer"]
+[connection signal="countdown_updated" from="Timer" to="RTLTimer" method="_on_timer_countdown_updated"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
