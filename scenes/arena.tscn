@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk51xaddm4edg"]
 
-[ext_resource type="Script" uid="uid://1dw4snnx076k" path="res://src/rigid_mid.gd" id="1_ubfh8"]
+[ext_resource type="Script" uid="uid://1dw4snnx076k" path="res://src/sb_mid.gd" id="1_ubfh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g21bf"]
 size = Vector2(1200, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfh8"]
-size = Vector2(680, 20)
+size = Vector2(610, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_444vf"]
-size = Vector2(680, 20)
+size = Vector2(610, 20)
 
 [node name="Arena" type="Node"]
 
@@ -21,44 +21,44 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="RigidHorTop" type="StaticBody2D" parent="."]
+[node name="SBTop" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidHorTop"]
-position = Vector2(600, 10)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SBTop"]
+position = Vector2(600, 50)
 shape = SubResource("RectangleShape2D_g21bf")
 
-[node name="RigidHorBottom" type="StaticBody2D" parent="."]
+[node name="SBBottom" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidHorBottom"]
-position = Vector2(600, 710)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SBBottom"]
+position = Vector2(600, 680)
 shape = SubResource("RectangleShape2D_g21bf")
 
-[node name="RigidVerLeft" type="StaticBody2D" parent="."]
+[node name="SBLeft" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidVerLeft"]
-position = Vector2(9.99986, 360)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SBLeft"]
+position = Vector2(10, 365)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ubfh8")
 
-[node name="RigidVerRight" type="StaticBody2D" parent="."]
+[node name="SBRight" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidVerRight"]
-position = Vector2(1190, 360)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SBRight"]
+position = Vector2(1190, 365)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ubfh8")
 
-[node name="RigidMid" type="StaticBody2D" parent="."]
+[node name="SBMid" type="StaticBody2D" parent="."]
 script = ExtResource("1_ubfh8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidMid"]
-position = Vector2(600, 360)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SBMid"]
+position = Vector2(600, 365)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_444vf")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 5.0
+wait_time = 17.0
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Timer" to="RigidMid" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="SBMid" method="_on_timer_timeout"]

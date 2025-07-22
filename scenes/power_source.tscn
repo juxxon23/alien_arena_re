@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://doq8lbjphk0c6"]
+
+[ext_resource type="Texture2D" uid="uid://cqcikt4yl1ck2" path="res://icon.svg" id="1_00ly7"]
+[ext_resource type="Script" uid="uid://fpbfbrfgy600" path="res://src/power_source.gd" id="1_5kvrx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kvrx"]
+size = Vector2(127, 127)
+
+[node name="PowerSource" type="StaticBody2D"]
+visible = false
+collision_layer = 2
+script = ExtResource("1_5kvrx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_00ly7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("RectangleShape2D_5kvrx")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

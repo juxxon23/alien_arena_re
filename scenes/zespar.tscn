@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw5agfesx2g5m"]
+
+[ext_resource type="Texture2D" uid="uid://cqcikt4yl1ck2" path="res://icon.svg" id="1_2o4s4"]
+[ext_resource type="Script" uid="uid://bua5pqpe8qt5" path="res://src/zespar.gd" id="1_gspy6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gspy6"]
+size = Vector2(119, 119)
+
+[node name="Zespar" type="CharacterBody2D"]
+script = ExtResource("1_gspy6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2o4s4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_gspy6")

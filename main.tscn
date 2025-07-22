@@ -1,11 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy0ptkkfjejgw"]
+[gd_scene load_steps=6 format=3 uid="uid://cy0ptkkfjejgw"]
 
 [ext_resource type="PackedScene" uid="uid://dk51xaddm4edg" path="res://scenes/arena.tscn" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://jxj2oxnaokro" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://jxj2oxnaokro" path="res://scenes/thor.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://doq8lbjphk0c6" path="res://scenes/power_source.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cw5agfesx2g5m" path="res://scenes/zespar.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cybonr77a25yi" path="res://scenes/hud.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node"]
 
 [node name="Arena" parent="." instance=ExtResource("1_0xm2m")]
 
-[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(1065, 589)
+[node name="TPS" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(1132, 633)
+
+[node name="ZPS" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(60, 68)
+
+[node name="Thor" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(1050, 360)
+
+[node name="Zespar" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(150, 360)
+
+[node name="HUD" parent="." instance=ExtResource("5_lquwl")]
