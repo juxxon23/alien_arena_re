@@ -28,5 +28,5 @@ func _on_timeout() -> void:
 	emit_signal("countdown_updated", format_seconds(countdown))
 
 
-func _on_hud_countdown_timer() -> void:
+func start_timer_action() -> void:
 	start()

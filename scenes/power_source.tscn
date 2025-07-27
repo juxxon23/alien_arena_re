@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://doq8lbjphk0c6"]
+[gd_scene load_steps=5 format=3 uid="uid://doq8lbjphk0c6"]
 
 [ext_resource type="Texture2D" uid="uid://cqcikt4yl1ck2" path="res://icon.svg" id="1_00ly7"]
 [ext_resource type="Script" uid="uid://fpbfbrfgy600" path="res://src/power_source.gd" id="1_5kvrx"]
+[ext_resource type="Script" uid="uid://p3t745npcfqs" path="res://src/ps_timer.gd" id="3_aa43d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kvrx"]
 size = Vector2(127, 127)
 
 [node name="PowerSource" type="StaticBody2D"]
 visible = false
+scale = Vector2(0.3, 0.3)
 collision_layer = 2
 script = ExtResource("1_5kvrx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_00ly7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_5kvrx")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="PSTimer" type="Timer" parent="." groups=["timers"]]
 process_callback = 0
 wait_time = 10.0
 one_shot = true
-autostart = true
+script = ExtResource("3_aa43d")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PSTimer" to="." method="_on_timer_timeout"]

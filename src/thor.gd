@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 400 # Rapidez (pixels/sec)
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO 
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = speed

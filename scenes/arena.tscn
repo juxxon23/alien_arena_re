@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk51xaddm4edg"]
+[gd_scene load_steps=6 format=3 uid="uid://dk51xaddm4edg"]
 
 [ext_resource type="Script" uid="uid://1dw4snnx076k" path="res://src/sb_mid.gd" id="1_ubfh8"]
+[ext_resource type="Script" uid="uid://fe3qcqqgxsbl" path="res://src/mid_timer.gd" id="2_wl4x5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g21bf"]
 size = Vector2(1200, 20)
@@ -12,6 +13,8 @@ size = Vector2(610, 20)
 size = Vector2(610, 20)
 
 [node name="Arena" type="Node"]
+metadata/_edit_horizontal_guides_ = [64.0, 664.0, 104.0, 624.0]
+metadata/_edit_vertical_guides_ = [616.0, 1176.0, 24.0, 656.0, 1096.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -55,10 +58,10 @@ position = Vector2(600, 365)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_444vf")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="MidTimer" type="Timer" parent="." groups=["timers"]]
 process_callback = 0
 wait_time = 17.0
 one_shot = true
-autostart = true
+script = ExtResource("2_wl4x5")
 
-[connection signal="timeout" from="Timer" to="SBMid" method="_on_timer_timeout"]
+[connection signal="timeout" from="MidTimer" to="SBMid" method="_on_timer_timeout"]
