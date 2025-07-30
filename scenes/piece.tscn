@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvnf0"]
 size = Vector2(40, 40)
 
-[node name="Piece" type="StaticBody2D"]
+[node name="Piece" type="Area2D"]
 scale = Vector2(0.2, 0.2)
 collision_layer = 16
 script = ExtResource("1_gebih")
@@ -17,3 +17,5 @@ offset_bottom = 40.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_tvnf0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
