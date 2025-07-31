@@ -24,7 +24,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 timers=""
-players="Group for players"
+builders="Entities involved in collection of pieces and construction of objects"
 
 [input]
 

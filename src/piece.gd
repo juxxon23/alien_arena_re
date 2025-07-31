@@ -10,5 +10,9 @@ func toogle_collision(opt: bool) -> void:
 	
 
 func _on_body_entered(body: Node2D) -> void:
-	var color_piece = $ColorRect.color.to_html(false)
-	get_tree().call_group("players", "pick_up_pieces", [body, color_piece])
+	var color_piece = "#" + $ColorRect.color.to_html(false)
+	get_tree().call_group("builders", "pick_up_pieces", [body, color_piece])
+
+
+# La pieza verificara si su color corresponde al actual, si no lo es entonces
+# desactivara su colision.
