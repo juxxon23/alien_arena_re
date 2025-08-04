@@ -12,6 +12,7 @@ func format_color(color: Color) -> String:
 func _on_body_entered(body: Node2D) -> void:
 	var color_piece = format_color($ColorRect.color)
 	get_tree().call_group("builders", "pick_up_pieces", [body, color_piece])
+	queue_free()
 
 
 func disable_collision(opt: bool) -> void:

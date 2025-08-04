@@ -39,7 +39,7 @@ func pick_up_pieces(args) -> void: # args[0]: body, args[1]: color_piece
 		must_build = true
 		
 	if must_build:
-		get_tree().call_group("builders", "build", pieces_count)
+		get_tree().call_group("builders", "build", self.name, pieces_count)
 		pieces_count = 0
 		current_color = ""
 		
