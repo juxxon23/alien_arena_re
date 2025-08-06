@@ -7,6 +7,7 @@ var q = "r" # Quadrant
 	
 func _process(delta: float) -> void:
 	flush()
+	place()
 
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO 
@@ -51,6 +52,11 @@ func flush() -> void:
 		pieces_count = 0
 		current_color = ""
 		get_tree().call_group("builders", "flush_pieces", self.name)
+		
+
+func place() -> void:
+	if Input.is_action_just_pressed("place"):
+		get_tree().call_group("builders", "place_object", self.name)
 	
 	
 	
