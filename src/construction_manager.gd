@@ -29,12 +29,12 @@ func group_collision(group: String, q: int) -> void:
 	get_tree().call_group(group, "disable_collision_by_color", current_color[q])
 
 
-func current_qcolor(arg1: String, arg2: String) -> void: # arg1: quadrant, arg2: current_color
-	if arg1 == "l":
-		current_color[0] = arg2
+func current_qcolor(quadrant: String, color: String) -> void: 
+	if quadrant == "l":
+		current_color[0] = color
 		group_collision("left", 0)
-	elif arg1 == "r":
-		current_color[1] = arg2
+	elif quadrant == "r":
+		current_color[1] = color
 		group_collision("right", 1)
 	else:
 		return
@@ -49,10 +49,21 @@ func player_object(body_name: String, obj: Variant) -> void:
 		return
 	
 	
-func build(arg1: String, arg2: int) -> void: # arg1: body.name, arg2: pieces_count
+func build(body_name: String, pieces_count: int) -> void:
 	var object = object_scene.instantiate()
-	if arg2 == 3:
-		player_object(arg1, object)
-	elif arg2 == 4:
-		player_object(arg1, object)
-	get_tree().current_scene.get_node(arg1).call_deferred("add_child", object)
+	
+	if pieces_count == 3:
+		player_object(body_name, object)
+	elif pieces_count == 4:
+		player_object(body_name, object)
+	
+	get_tree().current_scene.get_node(body_name).call_deferred("add_child", object)
+
+
+func flush_pieces(body_name: String) -> void:
+	if body_name == "Zespar":
+		current_color[0] = ""
+		get_tree().call_group("left", "disable_collision", false)
+	elif body_name == "Thor":
+		current_color[1] = ""
+		get_tree().call_group("right", "disable_collision", false)

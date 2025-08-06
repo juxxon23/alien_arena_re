@@ -5,6 +5,8 @@ var current_color : String
 var pieces_count := 0
 var q = "r" # Quadrant
 	
+func _process(delta: float) -> void:
+	flush()
 
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO 
@@ -43,6 +45,12 @@ func pick_up_pieces(args) -> void: # args[0]: body, args[1]: color_piece
 		pieces_count = 0
 		current_color = ""
 		
+		
+func flush() -> void:
+	if Input.is_action_just_pressed("flush"):
+		pieces_count = 0
+		current_color = ""
+		get_tree().call_group("builders", "flush_pieces", self.name)
 	
 	
 	
