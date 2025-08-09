@@ -4,10 +4,13 @@ extends CharacterBody2D
 var current_color : String
 var pieces_count := 0
 var q = "r" # Quadrant
+var must_build : bool
+
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	flush()
 	place()
+
 
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO 
@@ -34,7 +37,7 @@ func pick_up_pieces(args) -> void: # args[0]: body, args[1]: color_piece
 	
 	pieces_count += 1
 	#print("from pick_up: ", current_color, " ", pieces_count)
-	var must_build = false
+	must_build = false
 	
 	if current_color == "#ff3333" and pieces_count == 3:
 		must_build = true
@@ -48,6 +51,9 @@ func pick_up_pieces(args) -> void: # args[0]: body, args[1]: color_piece
 		
 		
 func flush() -> void:
+	if must_build:
+		return
+	
 	if Input.is_action_just_pressed("flush"):
 		pieces_count = 0
 		current_color = ""

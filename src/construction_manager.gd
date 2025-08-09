@@ -43,35 +43,13 @@ func current_qcolor(quadrant: String, color: String) -> void:
 		return
 	
 
-func player_object(body_name: String, obj: Variant) -> void:
-	if body_name == "Zespar":
-		obj.set_object(current_color[0])
-	elif body_name == "Thor":
-		obj.set_object(current_color[1])
-	else:
-		return
-	
-	
-func build(body_name: String, pieces_count: int) -> void:
-	var object = object_scene.instantiate()
-	
-	if pieces_count == 3:
-		player_object(body_name, object)
-	elif pieces_count == 4:
-		player_object(body_name, object)
-	
-	get_tree().current_scene.get_node(body_name).call_deferred("add_child", object)
-	
-	can_place = true
-	
-
-func flush_pieces(body_name: String) -> void:
+func flush_pieces(body_name: String, dis_coll: bool = false) -> void:
 	if body_name == "Zespar":
 		current_color[0] = ""
-		get_tree().call_group("left", "disable_collision", false)
+		get_tree().call_group("left", "disable_collision", dis_coll)
 	elif body_name == "Thor":
 		current_color[1] = ""
-		get_tree().call_group("right", "disable_collision", false)
+		get_tree().call_group("right", "disable_collision", dis_coll)
 	
 	can_place = false
 
@@ -87,5 +65,32 @@ func place_object(body_name: String) -> void:
 	obj.reparent(self)
 	
 	flush_pieces(body_name)
+	
+	
+func player_object(body_name: String, obj: Variant) -> void:
+	if body_name == "Zespar":
+		obj.set_object(current_color[0])
+	elif body_name == "Thor":
+		obj.set_object(current_color[1])
+	else:
+		return	
+	
+	
+func build(body_name: String, pieces_count: int) -> void:
+	var object = object_scene.instantiate()
+	
+	if pieces_count == 3:
+		player_object(body_name, object)
+	elif pieces_count == 4:
+		player_object(body_name, object)
+	
+	get_tree().current_scene.get_node(body_name).call_deferred("add_child", object)
+	
+	flush_pieces(body_name, true)
+		
+	can_place = true
+	
+
+
 	
 	

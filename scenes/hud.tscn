@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c1jg4h4wvda62" path="res://src/hud.gd" id="1_oo0fn"]
 [ext_resource type="Script" uid="uid://dl4fnr3cgvj0e" path="res://src/hud_timer.gd" id="3_5ysmq"]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" groups=["score"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ text = "ALIEN ARENA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RTLLeft" type="RichTextLabel" parent="."]
+[node name="ZesparScore" type="RichTextLabel" parent="."]
 layout_mode = 1
 offset_left = 10.0
 offset_right = 50.0
@@ -35,7 +35,7 @@ text = "00"
 fit_content = true
 vertical_alignment = 1
 
-[node name="RTLRight" type="RichTextLabel" parent="."]
+[node name="ThorScore" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

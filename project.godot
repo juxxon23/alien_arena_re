@@ -27,6 +27,7 @@ timers=""
 builders="Entities involved in collection of pieces and construction of objects"
 right="Group of pieces in the right quadrant"
 left="Group of pieces in the left quadrant"
+score=""
 
 [input]
 
