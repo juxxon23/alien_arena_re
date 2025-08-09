@@ -25,3 +25,4 @@ one_shot = true
 script = ExtResource("3_aa43d")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="PSTimer" to="." method="_on_ps_timer_timeout"]

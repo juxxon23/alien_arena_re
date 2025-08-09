@@ -1,7 +1,7 @@
 extends Area2D
 
 
-func _on_timer_timeout() -> void:
+func _on_ps_timer_timeout() -> void:
 	set_visible(true)
 	
 	

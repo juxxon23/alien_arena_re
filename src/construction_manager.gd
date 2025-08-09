@@ -4,8 +4,13 @@ var piece_colors := ["#6699ff","#ff6699", "#99ff66", "#3333ff", "#ff3333"]
 var current_color := ["",""] # [left_q, right_q]
 var can_place : bool = false
 
-@onready var piece_scene = preload("res://scenes/piece.tscn")
-@onready var object_scene = preload("res://scenes/object.tscn")
+@onready var piece_scn = preload("res://scenes/piece.tscn")
+@onready var mine_scn = preload("res://scenes/mine.tscn")
+@onready var trap_scn = preload("res://scenes/trap.tscn")
+@onready var drone_scn = preload("res://scenes/drone.tscn")
+@onready var qtpi_scn = preload("res://scenes/qtpi.tscn")
+@onready var spazzhatazz_scn = preload("res://scenes/spazzhatazz.tscn")
+#@onready var object_scene = preload("res://scenes/object.tscn")
 
 
 func _ready() -> void:
@@ -18,7 +23,7 @@ func random_position_in_right_quadrant() -> Vector2:
 	
 func set_initial_pieces() -> void:
 	for i in 16:
-		var piece = piece_scene.instantiate()
+		var piece = piece_scn.instantiate()
 		
 		piece.change_color(piece_colors.pick_random())
 		# avoid overlapping (todo)
@@ -60,29 +65,40 @@ func place_object(body_name: String) -> void:
 	if not can_place:
 		return
 	
-	var obj = player.get_node("Object")
+	var obj = player.get_child(-1)
 	
 	obj.reparent(self)
 	
 	flush_pieces(body_name)
 	
 	
-func player_object(body_name: String, obj: Variant) -> void:
+func player_object(body_name: String) -> Variant:
 	if body_name == "Zespar":
-		obj.set_object(current_color[0])
+		match current_color[0]:
+			"#3333ff": return trap_scn.instantiate()
+			"#6699ff": return drone_scn.instantiate()
+			"#99ff66": return qtpi_scn.instantiate()
+			"#ff6699": return spazzhatazz_scn.instantiate()
+			_: return
 	elif body_name == "Thor":
-		obj.set_object(current_color[1])
+		match current_color[1]:
+			"#3333ff": return trap_scn.instantiate()
+			"#6699ff": return drone_scn.instantiate()
+			"#99ff66": return qtpi_scn.instantiate()
+			"#ff6699": return spazzhatazz_scn.instantiate()
+			_: return
 	else:
 		return	
 	
 	
 func build(body_name: String, pieces_count: int) -> void:
-	var object = object_scene.instantiate()
+	var object : Variant
 	
+	# Falta asignar dependiendo el personaje
 	if pieces_count == 3:
-		player_object(body_name, object)
+		object = mine_scn.instantiate()
 	elif pieces_count == 4:
-		player_object(body_name, object)
+		object = player_object(body_name)
 	
 	get_tree().current_scene.get_node(body_name).call_deferred("add_child", object)
 	

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://2i62vy8d5rer"]
+
+[ext_resource type="Script" uid="uid://si2dsvu1wfeb" path="res://src/spazzhatazz.gd" id="1_i25w7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3norn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"spazz",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i25w7"]
+
+[node name="Spazzhatazz" type="AnimatableBody2D"]
+script = ExtResource("1_i25w7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3norn")
+animation = &"spazz"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i25w7")
+disabled = true

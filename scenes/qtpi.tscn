@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwv0ovmdhukj2"]
+
+[ext_resource type="Script" uid="uid://iucwtsbg62rv" path="res://src/qtpi.gd" id="1_58g3w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aotoq"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58g3w"]
+
+[node name="Qtpi" type="AnimatableBody2D"]
+script = ExtResource("1_58g3w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aotoq")
+animation = &"walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_58g3w")
+disabled = true
