@@ -27,11 +27,11 @@ collision_layer = 8
 
 [node name="Thor" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(1050, 360)
-collision_mask = 27
+collision_mask = 91
 
 [node name="Zespar" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(150, 360)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 39
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]

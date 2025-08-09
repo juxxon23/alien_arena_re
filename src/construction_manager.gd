@@ -73,20 +73,32 @@ func place_object(body_name: String) -> void:
 	
 	
 func player_object(body_name: String) -> Variant:
+	var obj : Variant
+	
 	if body_name == "Zespar":
 		match current_color[0]:
-			"#3333ff": return trap_scn.instantiate()
-			"#6699ff": return drone_scn.instantiate()
-			"#99ff66": return qtpi_scn.instantiate()
-			"#ff6699": return spazzhatazz_scn.instantiate()
+			"#ff3333": obj = mine_scn.instantiate()
+			"#3333ff": obj = trap_scn.instantiate()
+			"#6699ff": obj = drone_scn.instantiate()
+			"#99ff66": obj = qtpi_scn.instantiate()
+			"#ff6699": obj = spazzhatazz_scn.instantiate()
 			_: return
+		
+		obj.set_collision_layer(7)
+		obj.set_collision_mask(1)
+		return obj
 	elif body_name == "Thor":
 		match current_color[1]:
-			"#3333ff": return trap_scn.instantiate()
-			"#6699ff": return drone_scn.instantiate()
-			"#99ff66": return qtpi_scn.instantiate()
-			"#ff6699": return spazzhatazz_scn.instantiate()
+			"#ff3333": obj = mine_scn.instantiate()
+			"#3333ff": obj = trap_scn.instantiate()
+			"#6699ff": obj = drone_scn.instantiate()
+			"#99ff66": obj = qtpi_scn.instantiate()
+			"#ff6699": obj = spazzhatazz_scn.instantiate()
 			_: return
+		
+		obj.set_collision_layer(6)
+		obj.set_collision_mask(2)	
+		return obj
 	else:
 		return	
 	
@@ -94,9 +106,8 @@ func player_object(body_name: String) -> Variant:
 func build(body_name: String, pieces_count: int) -> void:
 	var object : Variant
 	
-	# Falta asignar dependiendo el personaje
 	if pieces_count == 3:
-		object = mine_scn.instantiate()
+		object = player_object(body_name)
 	elif pieces_count == 4:
 		object = player_object(body_name)
 	
