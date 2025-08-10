@@ -25,18 +25,24 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="SBTop" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 99
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SBTop"]
 position = Vector2(600, 50)
 shape = SubResource("RectangleShape2D_g21bf")
 
 [node name="SBBottom" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 99
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SBBottom"]
 position = Vector2(600, 680)
 shape = SubResource("RectangleShape2D_g21bf")
 
 [node name="SBLeft" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 99
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SBLeft"]
 position = Vector2(10, 365)
@@ -44,6 +50,8 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_ubfh8")
 
 [node name="SBRight" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 99
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SBRight"]
 position = Vector2(1190, 365)
@@ -51,6 +59,8 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_ubfh8")
 
 [node name="SBMid" type="StaticBody2D" parent="."]
+collision_layer = 256
+collision_mask = 3
 script = ExtResource("1_ubfh8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SBMid"]

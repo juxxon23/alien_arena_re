@@ -48,16 +48,16 @@ animations = [{
 radius = 9.75
 height = 21.0
 
-[node name="Qtpi" type="AnimatableBody2D"]
-scale = Vector2(2, 2)
+[node name="Qtpi" type="CharacterBody2D"]
 script = ExtResource("1_58g3w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_aotoq")
 animation = &"walking"
 frame_progress = 0.872608
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 shape = SubResource("CapsuleShape2D_3jjrp")
 disabled = true

@@ -63,6 +63,8 @@ place={
 2d_physics/layer_5="pieces"
 2d_physics/layer_6="player objects"
 2d_physics/layer_7="enemy objects"
+2d_physics/layer_8="environment"
+2d_physics/layer_9="mid"
 
 [rendering]
 

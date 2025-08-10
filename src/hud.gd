@@ -1,6 +1,6 @@
 extends Control
 
-var scores = [0,0] # [Zespar_score, Thor_score]
+var scores = [0, 0] # [Zespar_score, Thor_score]
 
 
 func _ready() -> void:
@@ -24,5 +24,6 @@ func add_score(body_name, score) -> void:
 		scores[1] += score
 		$ThorScore.text = str(scores[1])
 		
+		
 func reset_scores() -> void:
-	scores = [0,0]
+	scores = [0, 0]

@@ -5,15 +5,20 @@ var current_color : String
 var pieces_count := 0
 var q = "r" # Quadrant
 var must_build : bool
+var can_move : bool = true
 
-	
+
 func _process(_delta: float) -> void:
 	flush()
 	place()
 
 
 func _physics_process(_delta: float) -> void:
+	if not can_move:
+		return
+		
 	velocity = Vector2.ZERO 
+	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = speed
 	if Input.is_action_pressed("ui_left"):
@@ -46,6 +51,7 @@ func pick_up_pieces(args) -> void: # args[0]: body, args[1]: color_piece
 		
 	if must_build:
 		get_tree().call_group("builders", "build", self.name, pieces_count)
+		#print(get_tree().current_scene.get_node("Thor").get_children())
 		pieces_count = 0
 		current_color = ""
 		
@@ -63,6 +69,12 @@ func flush() -> void:
 func place() -> void:
 	if Input.is_action_just_pressed("place"):
 		get_tree().call_group("builders", "place_object", self.name)
+		#print(get_tree().current_scene.get_node("Thor").get_children())
+		
+
+func player_move(body_name: String, opt: bool) -> void:
+	if body_name == self.name:
+		can_move = opt
 	
 	
 	

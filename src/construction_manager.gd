@@ -10,7 +10,6 @@ var can_place : bool = false
 @onready var drone_scn = preload("res://scenes/drone.tscn")
 @onready var qtpi_scn = preload("res://scenes/qtpi.tscn")
 @onready var spazzhatazz_scn = preload("res://scenes/spazzhatazz.tscn")
-#@onready var object_scene = preload("res://scenes/object.tscn")
 
 
 func _ready() -> void:
@@ -83,9 +82,12 @@ func player_object(body_name: String) -> Variant:
 			"#99ff66": obj = qtpi_scn.instantiate()
 			"#ff6699": obj = spazzhatazz_scn.instantiate()
 			_: return
+			
+		obj.set_coll_layer([7])
+		obj.set_coll_mask([1, 3, 6, 8])
+		obj.set_player_owner(body_name)
 		
-		obj.set_collision_layer(7)
-		obj.set_collision_mask(1)
+		
 		return obj
 	elif body_name == "Thor":
 		match current_color[1]:
@@ -96,8 +98,10 @@ func player_object(body_name: String) -> Variant:
 			"#ff6699": obj = spazzhatazz_scn.instantiate()
 			_: return
 		
-		obj.set_collision_layer(6)
-		obj.set_collision_mask(2)	
+		obj.set_coll_layer([6])
+		obj.set_coll_mask([2, 4, 7, 8])
+		obj.set_player_owner(body_name)
+
 		return obj
 	else:
 		return	
@@ -110,7 +114,7 @@ func build(body_name: String, pieces_count: int) -> void:
 		object = player_object(body_name)
 	elif pieces_count == 4:
 		object = player_object(body_name)
-	
+
 	get_tree().current_scene.get_node(body_name).call_deferred("add_child", object)
 	
 	flush_pieces(body_name, true)
