@@ -45,20 +45,21 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxcwj"]
-size = Vector2(47, 21.3333)
+size = Vector2(36.3333, 21.3333)
 
-[node name="Drone" type="AnimatableBody2D"]
+[node name="Drone" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_knnud")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.75, 0)
 scale = Vector2(2.88776, 3)
 sprite_frames = SubResource("SpriteFrames_f6asb")
-animation = &"idle"
-frame_progress = 0.712259
+animation = &"walking"
+frame = 2
+frame_progress = 0.655439
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.5, 0)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_nxcwj")
-disabled = true
