@@ -54,4 +54,9 @@ frame_progress = 0.796673
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_jl22o")
 
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
