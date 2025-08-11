@@ -75,6 +75,3 @@ func place() -> void:
 func player_move(body_name: String, opt: bool) -> void:
 	if body_name == self.name:
 		can_move = opt
-	
-	
-	

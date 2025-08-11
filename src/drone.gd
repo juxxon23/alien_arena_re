@@ -41,3 +41,4 @@ func set_coll_mask(masks: Array) -> void:
 func set_player_owner(body_name: String) -> void:
 	player_owner = body_name
 	
+	

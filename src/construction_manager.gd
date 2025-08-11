@@ -79,14 +79,21 @@ func player_object(body_name: String) -> Variant:
 			"#ff3333": obj = mine_scn.instantiate()
 			"#3333ff": obj = trap_scn.instantiate()
 			"#6699ff": obj = drone_scn.instantiate()
-			"#99ff66": obj = qtpi_scn.instantiate()
-			"#ff6699": obj = spazzhatazz_scn.instantiate()
+			"#99ff66": 
+				obj = qtpi_scn.instantiate()
+				var opponent = get_tree().current_scene.get_node("Thor")
+				
+				obj.set_player_opponent(opponent)
+			"#ff6699": 
+				obj = spazzhatazz_scn.instantiate()
+				var opponent = get_tree().current_scene.get_node("Thor")
+				
+				obj.set_player_opponent(opponent)
 			_: return
 			
 		obj.set_coll_layer([7])
 		obj.set_coll_mask([1, 3, 6, 8])
 		obj.set_player_owner(body_name)
-		
 		
 		return obj
 	elif body_name == "Thor":
@@ -94,8 +101,16 @@ func player_object(body_name: String) -> Variant:
 			"#ff3333": obj = mine_scn.instantiate()
 			"#3333ff": obj = trap_scn.instantiate()
 			"#6699ff": obj = drone_scn.instantiate()
-			"#99ff66": obj = qtpi_scn.instantiate()
-			"#ff6699": obj = spazzhatazz_scn.instantiate()
+			"#99ff66": 
+				obj = qtpi_scn.instantiate()
+				var opponent = get_tree().current_scene.get_node("Zespar")
+				
+				obj.set_player_opponent(opponent)
+			"#ff6699": 
+				obj = spazzhatazz_scn.instantiate()
+				var opponent = get_tree().current_scene.get_node("Zespar")
+				
+				obj.set_player_opponent(opponent)
 			_: return
 		
 		obj.set_coll_layer([6])

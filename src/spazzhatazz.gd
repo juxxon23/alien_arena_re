@@ -1,6 +1,33 @@
 extends CharacterBody2D
 
+@export var speed = 400 # (pixels/sec)
+@export var zigzag_amplitude : float = 50.0  # ancho zigzag
+@export var zigzag_frequency : float = 5.0   # oscilacion
+var time_passed : float = 0.0
 var player_owner : String
+var player_opponent : Variant
+
+
+func _physics_process(delta: float) -> void:
+	if player_opponent == null:
+		return
+	
+	time_passed += delta
+	
+	if position != Vector2.ZERO:
+		var direction = (player_opponent.position - position).normalized() # Direccion hacia el jugador
+		var perpendicular = Vector2(-direction.y, direction.x) # Perpendicular para el zigzag
+		var offset = perpendicular * sin(time_passed * zigzag_frequency) * zigzag_amplitude # Oscilacion lateral
+		var zigzag_direction = (direction + offset.normalized()).normalized() # Direccion final con zigzag
+		
+		velocity = zigzag_direction * speed * delta
+		
+		var collision = move_and_collide(velocity)
+		
+		if collision:
+			get_tree().call_group("score", "add_score", player_owner, 20)
+			queue_free()
+
 
 
 func set_coll_layer(layers: Array) -> void:
@@ -23,3 +50,7 @@ func set_coll_mask(masks: Array) -> void:
 
 func set_player_owner(body_name: String) -> void:
 	player_owner = body_name
+
+
+func set_player_opponent(player: Variant) -> void:
+	player_opponent = player

@@ -60,4 +60,3 @@ frame_progress = 0.872608
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(4, 4)
 shape = SubResource("CapsuleShape2D_3jjrp")
-disabled = true
