@@ -1,4 +1,5 @@
 extends RichTextLabel
+## Displays and updates the match countdown timer.
 
 var text_count: String = "00:00"
 

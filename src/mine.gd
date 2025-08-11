@@ -1,4 +1,7 @@
 extends Area2D
+## Represents a buildable mine object in the game.
+## When an opponent touches it, the player who placed it (the owner) is awarded
+## with 100 points.
 
 var player_owner : String
 
@@ -13,7 +16,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 func set_coll_layer(layers: Array) -> void:
 	var layer_sum : int = 0
-	
 	for layer in layers:
 		layer_sum += int(pow(2, layer-1))
 	
@@ -22,7 +24,6 @@ func set_coll_layer(layers: Array) -> void:
 	
 func set_coll_mask(masks: Array) -> void:
 	var mask_sum : int = 0
-	
 	for mask in masks:
 		mask_sum += int(pow(2, mask-1))
 	

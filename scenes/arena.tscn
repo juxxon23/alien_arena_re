@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="SBTop" type="StaticBody2D" parent="."]
+[node name="SBTop" type="StaticBody2D" parent="." groups=["walls"]]
 collision_layer = 128
 collision_mask = 99
 
@@ -32,7 +32,7 @@ collision_mask = 99
 position = Vector2(600, 50)
 shape = SubResource("RectangleShape2D_g21bf")
 
-[node name="SBBottom" type="StaticBody2D" parent="."]
+[node name="SBBottom" type="StaticBody2D" parent="." groups=["walls"]]
 collision_layer = 128
 collision_mask = 99
 
@@ -40,7 +40,7 @@ collision_mask = 99
 position = Vector2(600, 680)
 shape = SubResource("RectangleShape2D_g21bf")
 
-[node name="SBLeft" type="StaticBody2D" parent="."]
+[node name="SBLeft" type="StaticBody2D" parent="." groups=["walls"]]
 collision_layer = 128
 collision_mask = 99
 
@@ -49,7 +49,7 @@ position = Vector2(10, 365)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ubfh8")
 
-[node name="SBRight" type="StaticBody2D" parent="."]
+[node name="SBRight" type="StaticBody2D" parent="." groups=["walls"]]
 collision_layer = 128
 collision_mask = 99
 

@@ -1,17 +1,28 @@
 extends Timer
+## Manages the main match countdown timer.
+## This timer tracks the remaining time for the match and emits updates
+## each second. When the countdown reaches zero, the timer stops automatically.
 
-@export var countdown: float = 0
 signal countdown_updated(count: int)
 
+@export var countdown: float = 0
 
-func _process(_delta: float) -> void:
-	increase_countdown()
+
+func _on_timeout() -> void:
+	countdown -= 1
+	if countdown <= 0:
+		stop()
+	
+	emit_signal("countdown_updated", format_seconds(countdown))
+
+
+func start_timer_action() -> void:
+	start()
 
 
 func increase_countdown() -> void:
-	if Input.is_action_just_pressed("add_time"):
-		countdown += 60
-		emit_signal("countdown_updated", format_seconds(countdown))
+	countdown += 60
+	emit_signal("countdown_updated", format_seconds(countdown))
 
 
 func format_seconds(time : float) -> String:
@@ -19,14 +30,3 @@ func format_seconds(time : float) -> String:
 	var seconds := fmod(time, 60)
 	
 	return "%02d:%02d" % [minutes, seconds]
-
-
-func _on_timeout() -> void:
-	countdown -= 1
-	if countdown <= 0:
-		stop()
-	emit_signal("countdown_updated", format_seconds(countdown))
-
-
-func start_timer_action() -> void:
-	start()
