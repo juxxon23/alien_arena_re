@@ -75,43 +75,60 @@ func place_object(body_name: String) -> void:
 
 
 func player_object(body_name: String) -> Variant:
-	var obj : Variant
-	if body_name == "Zespar":
-		var opponent = get_tree().current_scene.get_node("Thor")
-		match current_color[0]:
-			"#ff3333": obj = mine_scn.instantiate()
-			"#3333ff": obj = trap_scn.instantiate()
-			"#6699ff": obj = drone_scn.instantiate()
-			"#99ff66": 
-				obj = qtpi_scn.instantiate()
-				obj.set_player_opponent(opponent)
-			"#ff6699": 
-				obj = spazzhatazz_scn.instantiate()
-				obj.set_player_opponent(opponent)
-			_: return
-		obj.set_coll_layer([7])
-		obj.set_coll_mask([1, 3, 6, 8])
-		obj.set_player_owner(body_name)
-		return obj
-	elif body_name == "Thor":
-		var opponent = get_tree().current_scene.get_node("Zespar")
-		match current_color[1]:
-			"#ff3333": obj = mine_scn.instantiate()
-			"#3333ff": obj = trap_scn.instantiate()
-			"#6699ff": obj = drone_scn.instantiate()
-			"#99ff66": 
-				obj = qtpi_scn.instantiate()
-				obj.set_player_opponent(opponent)
-			"#ff6699": 
-				obj = spazzhatazz_scn.instantiate()
-				obj.set_player_opponent(opponent)
-			_: return
-		obj.set_coll_layer([6])
-		obj.set_coll_mask([2, 4, 7, 8])
-		obj.set_player_owner(body_name)
-		return obj
-	else:
-		return	
+	var config = get_config_player(body_name)
+	if not config:
+		return
+		
+	var opponent = get_tree().current_scene.get_node(config.opponent_name)
+	var color = current_color[config.index]
+	var obj = create_object_from_color(color, opponent)
+	if not obj:
+		return
+		
+	obj.set_coll_layer(config.coll_layer)
+	obj.set_coll_mask(config.coll_mask)
+	obj.set_player_owner(body_name)
+	return obj
+	
+	
+func get_config_player(body_name: String) -> Dictionary:
+	var index : int
+	var opponent_name : String
+	var coll_layer : Array
+	var coll_mask : Array
+	match body_name:
+		"Zespar":
+			return {
+				index = 0,
+				opponent_name = "Thor",
+				coll_layer = [7],
+				coll_mask = [1, 3, 6, 8],
+			}
+		"Thor":
+			return { 
+				index = 1,
+				opponent_name = "Zespar",
+				coll_layer = [6],
+				coll_mask = [2, 4, 7, 8],
+			}
+		_:
+			return {}
+	
+
+func create_object_from_color(color: String, opponent: Node) -> Variant:
+	match color:
+		"#ff3333": return mine_scn.instantiate()
+		"#3333ff": return trap_scn.instantiate()
+		"#6699ff": return drone_scn.instantiate()
+		"#99ff66": 
+			var obj = qtpi_scn.instantiate()
+			obj.set_player_opponent(opponent)
+			return obj
+		"#ff6699": 
+			var obj = spazzhatazz_scn.instantiate()
+			obj.set_player_opponent(opponent)
+			return obj
+		_: return
 	
 
 func group_collision(group: String, quadrant: int) -> void:

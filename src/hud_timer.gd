@@ -16,13 +16,13 @@ func _on_timeout() -> void:
 	emit_signal("countdown_updated", format_seconds(countdown))
 
 
-func start_timer_action() -> void:
-	start()
-
-
-func increase_countdown() -> void:
+func _on_hud_increase_countdown() -> void:
 	countdown += 60
 	emit_signal("countdown_updated", format_seconds(countdown))
+
+
+func start_timer_action() -> void:
+	start()
 
 
 func format_seconds(time : float) -> String:

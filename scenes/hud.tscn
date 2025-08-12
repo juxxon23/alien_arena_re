@@ -71,5 +71,6 @@ script = ExtResource("1_ahhtf")
 process_callback = 0
 script = ExtResource("3_5ysmq")
 
+[connection signal="increase_countdown" from="." to="HUDTimer" method="_on_hud_increase_countdown"]
 [connection signal="countdown_updated" from="HUDTimer" to="RTLTimer" method="_on_timer_countdown_updated"]
 [connection signal="timeout" from="HUDTimer" to="HUDTimer" method="_on_timeout"]
