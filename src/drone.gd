@@ -1,3 +1,4 @@
+class_name Drone
 extends CharacterBody2D
 ## Represents a moving constructable drone that travels horizontally until it 
 ## collides with a wall. Upon collision, it awards 50 points to its owner.

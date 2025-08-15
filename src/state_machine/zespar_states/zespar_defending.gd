@@ -33,6 +33,7 @@ func on_physics_process(delta: float) -> void:
 			
 		state_machine.change_to("ZesparAttacking")
 	
-	controlled_node.direction = controlled_node.position.direction_to(zps_pos)
-	controlled_node.velocity = controlled_node.direction * controlled_node.speed
-	controlled_node.move_and_slide()
+	if controlled_node.can_move:
+		controlled_node.direction = controlled_node.position.direction_to(zps_pos)
+		controlled_node.velocity = controlled_node.direction * controlled_node.speed
+		controlled_node.move_and_slide()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk51xaddm4edg"]
+[gd_scene load_steps=8 format=3 uid="uid://dk51xaddm4edg"]
 
 [ext_resource type="Script" uid="uid://1dw4snnx076k" path="res://src/sb_mid.gd" id="1_ubfh8"]
 [ext_resource type="Script" uid="uid://fe3qcqqgxsbl" path="res://src/mid_timer.gd" id="2_wl4x5"]
+[ext_resource type="Script" uid="uid://cjc51g8i3xh8j" path="res://src/area_left.gd" id="3_olpmc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g21bf"]
 size = Vector2(1200, 20)
@@ -11,6 +12,9 @@ size = Vector2(610, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_444vf"]
 size = Vector2(610, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl4x5"]
+size = Vector2(576, 600)
 
 [node name="Arena" type="Node"]
 metadata/_edit_horizontal_guides_ = [64.0, 664.0, 104.0, 624.0]
@@ -74,4 +78,16 @@ wait_time = 17.0
 one_shot = true
 script = ExtResource("2_wl4x5")
 
+[node name="AreaLeft" type="Area2D" parent="." groups=["builders"]]
+position = Vector2(24, 64)
+collision_layer = 128
+collision_mask = 33
+script = ExtResource("3_olpmc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaLeft"]
+position = Vector2(288, 300)
+shape = SubResource("RectangleShape2D_wl4x5")
+
 [connection signal="timeout" from="MidTimer" to="SBMid" method="_on_timer_timeout"]
+[connection signal="body_entered" from="AreaLeft" to="AreaLeft" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaLeft" to="AreaLeft" method="_on_body_exited"]

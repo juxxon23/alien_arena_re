@@ -1,3 +1,4 @@
+class_name Thor
 extends CharacterBody2D
 ## This class defines the behavior of the player named "Thor".
 ## It handles movement, collecting pieces, building actions,

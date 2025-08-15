@@ -1,3 +1,4 @@
+class_name Qtpi
 extends CharacterBody2D
 ## This buildable object chases the opposing player and collides with it, when 
 ## a collision with the opponent occurs, it awards 20 points to its owner.
@@ -17,10 +18,10 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if position != Vector2.ZERO:
-		var direction = (player_opponent.position - position).normalized()
-		velocity = direction * speed * delta
+		var direction = position.direction_to(player_opponent.position)
+		velocity = direction * speed
 		
-		var collision = move_and_collide(velocity)
+		var collision = move_and_collide(velocity * delta)
 		if collision:
 			get_tree().call_group("score", "add_score", player_owner, 20)
 			queue_free()

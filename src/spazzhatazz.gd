@@ -1,3 +1,4 @@
+class_name Spazzhatazz
 extends CharacterBody2D
 ## This buildable object moves in a zigzag pattern until it is close enough to 
 ## the opponent to collide with it. When a collision with the opponent occurs, 

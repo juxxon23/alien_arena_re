@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	get_tree().call_group("score", "add_score", body.name, 100)
+	get_tree().call_group("score", "add_score", player_owner, 100)
 
 
 func set_coll_layer(layers: Array) -> void:

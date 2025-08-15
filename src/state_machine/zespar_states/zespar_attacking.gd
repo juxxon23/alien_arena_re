@@ -20,6 +20,5 @@ func on_physics_process(delta: float) -> void:
 		placed_obj = true
 		
 	if placed_obj:
-		return
-		#state_machine.change_to("ZesparDefending")
+		state_machine.change_to("ZesparDestroying")
 		
