@@ -5,7 +5,7 @@ extends Node
 
 var piece_colors := ["#6699ff","#ff6699", "#99ff66", "#3333ff", "#ff3333"]
 var current_color := ["",""] # [left_q, right_q]
-var can_place : bool = false
+var can_place := [false, false] # [Zespar, Thor]
 
 @onready var piece_scn = preload("res://scenes/piece.tscn")
 @onready var mine_scn = preload("res://scenes/mine.tscn")
@@ -48,7 +48,7 @@ func flush_pieces(body_name: String, dis_coll: bool = false) -> void:
 		current_color[1] = ""
 		get_tree().call_group("right", "disable_collision", dis_coll)
 	
-	can_place = false
+	set_can_place(body_name, false)
 	
 
 func build(body_name: String, pieces_count: int) -> void:
@@ -61,15 +61,18 @@ func build(body_name: String, pieces_count: int) -> void:
 	get_tree().current_scene.get_node(body_name).call_deferred("add_child",
 			 object)
 	flush_pieces(body_name, true)
-	can_place = true
+	set_can_place(body_name, true)
 
 
 func place_object(body_name: String) -> void:
 	var player = get_tree().current_scene.get_node(body_name)
-	if not can_place:
+	if not get_can_place(body_name):
 		return
 	
-	var obj = player.get_child(-1)
+	var obj := player.get_child(-1)
+	if not obj:
+		return 
+	
 	obj.reparent(self)
 	flush_pieces(body_name)
 
@@ -81,7 +84,8 @@ func player_object(body_name: String) -> Variant:
 		
 	var opponent = get_tree().current_scene.get_node(config.opponent_name)
 	var color = current_color[config.index]
-	var obj = create_object_from_color(color, opponent)
+	var dir = config.flip
+	var obj = create_object_from_color(color, opponent, dir)
 	if not obj:
 		return
 		
@@ -103,6 +107,7 @@ func get_config_player(body_name: String) -> Dictionary:
 				opponent_name = "Thor",
 				coll_layer = [7],
 				coll_mask = [1, 3, 6, 8],
+				flip = true
 			}
 		"Thor":
 			return { 
@@ -110,16 +115,20 @@ func get_config_player(body_name: String) -> Dictionary:
 				opponent_name = "Zespar",
 				coll_layer = [6],
 				coll_mask = [2, 4, 7, 8],
+				flip = false
 			}
 		_:
 			return {}
 	
 
-func create_object_from_color(color: String, opponent: Node) -> Variant:
+func create_object_from_color(color: String, opponent: Node, dir: int) -> Variant:
 	match color:
 		"#ff3333": return mine_scn.instantiate()
 		"#3333ff": return trap_scn.instantiate()
-		"#6699ff": return drone_scn.instantiate()
+		"#6699ff": 
+			var obj = drone_scn.instantiate()
+			obj.set_direction(dir)
+			return obj
 		"#99ff66": 
 			var obj = qtpi_scn.instantiate()
 			obj.set_player_opponent(opponent)
@@ -130,6 +139,20 @@ func create_object_from_color(color: String, opponent: Node) -> Variant:
 			return obj
 		_: return
 	
+	
+func set_can_place(body_name: String, opt: bool) -> void:
+	match body_name:
+		"Zespar": can_place[0] = opt
+		"Thor" : can_place[1] = opt
+		_: return
+
+
+func get_can_place(body_name: String) -> bool:
+	match body_name:
+		"Zespar": return can_place[0]
+		"Thor" : return can_place[1]
+		_: return false
+
 
 func group_collision(group: String, quadrant: int) -> void:
 	get_tree().call_group(group, "disable_collision_by_color", 

@@ -6,8 +6,8 @@ extends CharacterBody2D
 @export var speed = 400 # (pixels/sec)
 
 var current_color : String
-var pieces_count := 0
-var quadrant = "r"
+var pieces_count : int = 0
+var quadrant : String = "r"
 var must_build : bool
 var can_move : bool = true
 

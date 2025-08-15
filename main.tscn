@@ -12,8 +12,6 @@ metadata/_edit_vertical_guides_ = [1096.0]
 
 [node name="Arena" parent="." instance=ExtResource("1_0xm2m")]
 
-[node name="ConstructionManager" parent="." instance=ExtResource("6_7mycd")]
-
 [node name="TPS" parent="." instance=ExtResource("3_1bvp3")]
 visible = false
 position = Vector2(1132, 633)
@@ -24,6 +22,8 @@ collision_mask = 2
 visible = false
 position = Vector2(68, 97)
 collision_layer = 8
+
+[node name="ConstructionManager" parent="." instance=ExtResource("6_7mycd")]
 
 [node name="Thor" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(1050, 360)

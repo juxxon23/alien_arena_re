@@ -14,7 +14,10 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if position != Vector2.ZERO:
 		velocity = Vector2.ZERO
-		velocity.x -= speed
+		if $AnimatedSprite2D.flip_h:
+			velocity.x += speed
+		else:
+			velocity.x -= speed
 	
 	move_and_slide()
 	
@@ -41,3 +44,9 @@ func set_coll_mask(masks: Array) -> void:
 
 func set_player_owner(body_name: String) -> void:
 	player_owner = body_name
+
+
+func set_direction(dir: bool) -> void:
+	$AnimatedSprite2D.flip_h = dir
+		
+	

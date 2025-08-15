@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw5agfesx2g5m"]
+[gd_scene load_steps=9 format=3 uid="uid://cw5agfesx2g5m"]
 
 [ext_resource type="Texture2D" uid="uid://cqcikt4yl1ck2" path="res://icon.svg" id="1_2o4s4"]
 [ext_resource type="Script" uid="uid://bua5pqpe8qt5" path="res://src/zespar.gd" id="1_gspy6"]
 [ext_resource type="Script" uid="uid://df5ebbsh4w7fk" path="res://src/state_machine/state_machine.gd" id="3_o1jaj"]
+[ext_resource type="Script" uid="uid://cn7n4y0sytolo" path="res://src/state_machine/zespar_states/zespar_defending.gd" id="4_v6fgj"]
+[ext_resource type="Script" uid="uid://olu66d5pvx4b" path="res://src/state_machine/zespar_states/zespar_attacking.gd" id="5_ua3sw"]
+[ext_resource type="Script" uid="uid://dfgo3vgvd6glb" path="res://src/state_machine/zespar_states/zespar_counterattacking.gd" id="6_gps8x"]
+[ext_resource type="Script" uid="uid://buskaxmce1yln" path="res://src/state_machine/zespar_states/zespar_destroying.gd" id="7_jrjgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gspy6"]
 size = Vector2(119, 119)
@@ -17,5 +21,18 @@ texture = ExtResource("1_2o4s4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gspy6")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
 script = ExtResource("3_o1jaj")
+default_state = NodePath("ZesparDefending")
+
+[node name="ZesparDefending" type="Node" parent="StateMachine"]
+script = ExtResource("4_v6fgj")
+
+[node name="ZesparAttacking" type="Node" parent="StateMachine"]
+script = ExtResource("5_ua3sw")
+
+[node name="ZesparCounterattacking" type="Node" parent="StateMachine"]
+script = ExtResource("6_gps8x")
+
+[node name="ZesparDestroying" type="Node" parent="StateMachine"]
+script = ExtResource("7_jrjgq")
