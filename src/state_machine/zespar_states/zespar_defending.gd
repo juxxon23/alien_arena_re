@@ -4,7 +4,7 @@ extends StateBase
 var zps : Node
 var zps_pos : Vector2
 var current_color : String = "#ff3333"
-var minimum_dis := Vector2(5.0, 5.0)
+var min_dis := Vector2(5.0, 5.0)
 var builded_obj : bool = false
 var placed_obj : bool = false
 
@@ -24,14 +24,16 @@ func on_physics_process(delta: float) -> void:
 		get_tree().call_group("builders", "build", controlled_node.name, 3)
 		builded_obj = true
 	
-	if abs(round(controlled_node.position - zps_pos)) < minimum_dis:
+	if abs(round(controlled_node.position - zps_pos)) < min_dis:
 		controlled_node.velocity = Vector2.ZERO
 		if not placed_obj:
 			get_tree().call_group("builders", "place_object", controlled_node.name)
 			placed_obj = true
 			return
 			
-		state_machine.change_to("ZesparAttacking")
+		if not is_instance_valid(controlled_node.obj_left_area):
+			state_machine.change_to("ZesparAttacking")
+		return
 	
 	if controlled_node.can_move:
 		controlled_node.direction = controlled_node.position.direction_to(zps_pos)
