@@ -19,6 +19,7 @@ func _process(_delta: float) -> void:
 func start_timer() -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		get_tree().call_group("timers", "start_timer_action")
+		get_tree().call_group("builders", "set_initial_pieces")
 
 
 func increase_count() -> void:

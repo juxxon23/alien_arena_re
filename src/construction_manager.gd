@@ -15,10 +15,6 @@ var can_place := [false, false] # [Zespar, Thor]
 @onready var spazzhatazz_scn = preload("res://scenes/spazzhatazz.tscn")
 
 
-func _ready() -> void:
-	set_initial_pieces()
-	
-
 func set_initial_pieces() -> void:
 	for i in 16:
 		var piece = piece_scn.instantiate()
