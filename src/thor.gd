@@ -14,7 +14,7 @@ var pieces_count : int = 0
 var must_build : bool = false
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	flush()
 	place()
 

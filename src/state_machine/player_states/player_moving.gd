@@ -6,7 +6,7 @@ func on_physics_process(_delta: float) -> void:
 	movement()
 
 
-func on_input(event: InputEvent) -> void:
+func on_input(_event: InputEvent) -> void:
 	movement_direction()
 
 

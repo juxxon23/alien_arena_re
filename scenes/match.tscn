@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj14yo605rttm"]
+
+[ext_resource type="PackedScene" uid="uid://dk51xaddm4edg" path="res://scenes/arena.tscn" id="1_2n26j"]
+[ext_resource type="PackedScene" uid="uid://doq8lbjphk0c6" path="res://scenes/power_source.tscn" id="2_nm5tq"]
+[ext_resource type="PackedScene" uid="uid://bl65r43eqw0qp" path="res://scenes/construction_manager.tscn" id="3_8pbkx"]
+[ext_resource type="PackedScene" uid="uid://jxj2oxnaokro" path="res://scenes/thor.tscn" id="4_tf04k"]
+[ext_resource type="PackedScene" uid="uid://cw5agfesx2g5m" path="res://scenes/zespar.tscn" id="5_2djil"]
+
+[node name="Match" type="Node"]
+metadata/_edit_vertical_guides_ = [1096.0]
+
+[node name="Arena" parent="." instance=ExtResource("1_2n26j")]
+
+[node name="TPS" parent="." instance=ExtResource("2_nm5tq")]
+visible = false
+position = Vector2(1132, 633)
+collision_layer = 4
+collision_mask = 2
+
+[node name="ZPS" parent="." instance=ExtResource("2_nm5tq")]
+visible = false
+position = Vector2(68, 97)
+collision_layer = 8
+
+[node name="ConstructionManager" parent="." instance=ExtResource("3_8pbkx")]
+
+[node name="Thor" parent="." instance=ExtResource("4_tf04k")]
+position = Vector2(1050, 360)
+collision_mask = 475
+
+[node name="Zespar" parent="." instance=ExtResource("5_2djil")]
+position = Vector2(150, 360)
+collision_layer = 2
+collision_mask = 423

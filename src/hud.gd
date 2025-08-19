@@ -8,6 +8,7 @@ var scores = [0, 0] # [Zespar_score, Thor_score]
 var min_increase = 0
 var is_active = false
 
+
 func _ready() -> void:
 	reset_scores()
 	
@@ -15,6 +16,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	increase_count()
 	start_timer()
+
+
+func _on_hud_timer_end_match() -> void:
+	is_active = false
 
 
 func start_timer() -> void:
@@ -44,10 +49,11 @@ func add_score(body_name, score) -> void:
 		scores[1] += score
 		$ThorScore.text = str(scores[1])
 		
+
+func reload_timers_match() -> void:
+	get_tree().call_group("timers", "start_timer_action")
+	get_tree().call_group("builders", "set_initial_pieces")
+
 		
 func reset_scores() -> void:
 	scores = [0, 0]
-
-
-func _on_hud_timer_end_match() -> void:
-	is_active = false

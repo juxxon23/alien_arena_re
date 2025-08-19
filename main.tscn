@@ -1,37 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy0ptkkfjejgw"]
+[gd_scene load_steps=4 format=3 uid="uid://b12f0i6e07u1k"]
 
-[ext_resource type="PackedScene" uid="uid://dk51xaddm4edg" path="res://scenes/arena.tscn" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://jxj2oxnaokro" path="res://scenes/thor.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://doq8lbjphk0c6" path="res://scenes/power_source.tscn" id="3_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://cw5agfesx2g5m" path="res://scenes/zespar.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cybonr77a25yi" path="res://scenes/hud.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://bl65r43eqw0qp" path="res://scenes/construction_manager.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://ch3u0ecqpkoas" path="res://src/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cj14yo605rttm" path="res://scenes/match.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cybonr77a25yi" path="res://scenes/hud.tscn" id="3_tbgi4"]
 
-[node name="Main" type="Node"]
-metadata/_edit_vertical_guides_ = [1096.0]
+[node name="Main" type="Node" groups=["matches"]]
+script = ExtResource("1_sugp2")
 
-[node name="Arena" parent="." instance=ExtResource("1_0xm2m")]
+[node name="Match" parent="." instance=ExtResource("2_jyhfs")]
 
-[node name="TPS" parent="." instance=ExtResource("3_1bvp3")]
-visible = false
-position = Vector2(1132, 633)
-collision_layer = 4
-collision_mask = 2
-
-[node name="ZPS" parent="." instance=ExtResource("3_1bvp3")]
-visible = false
-position = Vector2(68, 97)
-collision_layer = 8
-
-[node name="ConstructionManager" parent="." instance=ExtResource("6_7mycd")]
-
-[node name="Thor" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(1050, 360)
-collision_mask = 475
-
-[node name="Zespar" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(150, 360)
-collision_layer = 2
-collision_mask = 423
-
-[node name="HUD" parent="." instance=ExtResource("5_lquwl")]
+[node name="HUD" parent="." instance=ExtResource("3_tbgi4")]

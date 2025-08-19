@@ -54,14 +54,14 @@ func build(body_name: String, pieces_count: int) -> void:
 	elif pieces_count == 4:
 		object = player_object(body_name)
 
-	get_tree().current_scene.get_node(body_name).call_deferred("add_child",
-			 object)
+	get_tree().current_scene.get_node("Match").get_node(body_name).call_deferred(
+			"add_child", object)
 	flush_pieces(body_name, true)
 	set_can_place(body_name, true)
 
 
 func place_object(body_name: String) -> void:
-	var player = get_tree().current_scene.get_node(body_name)
+	var player = get_tree().current_scene.get_node("Match").get_node(body_name)
 	if not get_can_place(body_name):
 		return
 	
@@ -78,7 +78,7 @@ func player_object(body_name: String) -> Variant:
 	if not config:
 		return
 		
-	var opponent = get_tree().current_scene.get_node(config.opponent_name)
+	var opponent = get_tree().current_scene.get_node("Match").get_node(config.opponent_name)
 	var color = current_color[config.index]
 	var dir = config.flip
 	var obj = create_object_from_color(color, opponent, dir)

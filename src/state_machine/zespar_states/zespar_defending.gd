@@ -10,7 +10,7 @@ var placed_obj : bool = false
 
 
 func start():
-	zps = get_tree().current_scene.get_child(2) # ZPS index in Main scene
+	zps = get_tree().current_scene.get_node("Match").get_child(2) # ZPS index in Main scene
 	zps_pos = zps.position
 	get_tree().call_group("builders", "current_qcolor", 
 			controlled_node.quadrant, current_color)

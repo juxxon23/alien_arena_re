@@ -24,7 +24,8 @@ func _on_hud_increase_countdown() -> void:
 
 
 func start_timer_action() -> void:
-	start()
+	if is_stopped():
+		start()
 
 
 func format_seconds(time : float) -> String:
