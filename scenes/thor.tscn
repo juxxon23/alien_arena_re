@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://jxj2oxnaokro"]
+[gd_scene load_steps=6 format=3 uid="uid://jxj2oxnaokro"]
 
 [ext_resource type="Script" uid="uid://cmf7vnqwohd55" path="res://src/thor.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cqcikt4yl1ck2" path="res://icon.svg" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://df5ebbsh4w7fk" path="res://src/state_machine/state_machine.gd" id="3_tp8mq"]
+[ext_resource type="Script" uid="uid://dp18wkrrqsk8e" path="res://src/state_machine/player_states/player_moving.gd" id="4_rihfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 size = Vector2(119, 119)
@@ -15,3 +17,10 @@ texture = ExtResource("2_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hqtel")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
+script = ExtResource("3_tp8mq")
+default_state = NodePath("PlayerMoving")
+
+[node name="PlayerMoving" type="Node" parent="StateMachine"]
+script = ExtResource("4_rihfl")

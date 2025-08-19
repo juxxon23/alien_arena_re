@@ -16,7 +16,7 @@ func start():
 			controlled_node.quadrant, current_color)
 	
 		
-func on_physics_process(delta: float) -> void:
+func on_physics_process(_delta: float) -> void:
 	if not zps.is_visible_in_tree():
 		return
 	

@@ -21,7 +21,7 @@ func start():
 	placed_obj = false
 	
 
-func on_physics_process(delta: float) -> void:
+func on_physics_process(_delta: float) -> void:
 	if not controlled_node.can_move:
 		return
 	

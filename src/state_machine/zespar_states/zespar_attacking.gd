@@ -14,9 +14,10 @@ func start():
 	
 	
 	
-func on_physics_process(delta: float) -> void:
+func on_physics_process(_delta: float) -> void:
 	if placed_obj:
 		state_machine.change_to("ZesparDestroying")
+		return
 	
 	if builded_obj:
 		get_tree().call_group("builders", "place_object", controlled_node.name)

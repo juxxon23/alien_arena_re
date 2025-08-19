@@ -9,7 +9,7 @@ func start():
 	thor = get_tree().current_scene.get_child(4) # Thor index in Main scene
 	
 
-func on_physics_process(delta: float) -> void:
+func on_physics_process(_delta: float) -> void:
 	if not controlled_node.can_move:
 		return 
 		
