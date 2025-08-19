@@ -5,7 +5,8 @@ extends Control
 signal increase_countdown
 
 var scores = [0, 0] # [Zespar_score, Thor_score]
-
+var min_increase = 0
+var is_active = false
 
 func _ready() -> void:
 	reset_scores()
@@ -17,14 +18,22 @@ func _process(_delta: float) -> void:
 
 
 func start_timer() -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+	if is_active:
+		return
+	
+	if Input.is_action_just_pressed("ui_accept") and min_increase > 0:
 		get_tree().call_group("timers", "start_timer_action")
 		get_tree().call_group("builders", "set_initial_pieces")
+		is_active = true
 
 
 func increase_count() -> void:
+	if is_active:
+		return
+	
 	if Input.is_action_just_pressed("add_time"):
 		emit_signal("increase_countdown")
+		min_increase += 1
 		
 	
 func add_score(body_name, score) -> void:
@@ -38,3 +47,7 @@ func add_score(body_name, score) -> void:
 		
 func reset_scores() -> void:
 	scores = [0, 0]
+
+
+func _on_hud_timer_end_match() -> void:
+	is_active = false

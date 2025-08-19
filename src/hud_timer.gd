@@ -4,6 +4,7 @@ extends Timer
 ## each second. When the countdown reaches zero, the timer stops automatically.
 
 signal countdown_updated(count: int)
+signal end_match()
 
 @export var countdown: float = 0
 
@@ -12,6 +13,7 @@ func _on_timeout() -> void:
 	countdown -= 1
 	if countdown <= 0:
 		stop()
+		emit_signal("end_match")
 	
 	emit_signal("countdown_updated", format_seconds(countdown))
 
