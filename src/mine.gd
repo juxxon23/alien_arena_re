@@ -10,8 +10,13 @@ func _ready() -> void:
 	$AnimatedSprite2D.play("mine")
 
 
-func _on_body_entered(_body: Node2D) -> void:
-	get_tree().call_group("score", "add_score", player_owner, 100)
+func _on_body_entered(body: Node2D) -> void:
+	if body is Drone or body is Qtpi or body is Spazzhatazz:
+		get_tree().call_group("objs", "exploded_obj", body) 
+	else:
+		get_tree().call_group("score", "add_score", player_owner, 100)
+	
+	queue_free()
 
 
 func set_coll_layer(layers: Array) -> void:

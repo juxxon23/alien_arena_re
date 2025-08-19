@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var speed = 100 # (pixels/sec)
 
 var player_owner : String
+var can_move : bool = true
 
 
 func _ready() -> void:
@@ -13,6 +14,9 @@ func _ready() -> void:
 
 	
 func _physics_process(_delta: float) -> void:
+	if not can_move:
+		return
+	
 	if position != Vector2.ZERO:
 		velocity = Vector2.ZERO
 		if $AnimatedSprite2D.flip_h:
@@ -26,6 +30,16 @@ func _physics_process(_delta: float) -> void:
 		get_tree().call_group("score", "add_score", player_owner, 50)
 		queue_free()
 		
+		
+func exploded_obj(body_obj: Variant) -> void:
+	if body_obj == self:
+		queue_free()
+
+
+func obj_move(body_name: String, opt: bool) -> void:
+	if body_name == self.name:
+		can_move = opt
+
 
 func set_coll_layer(layers: Array) -> void:
 	var layer_sum : int = 0

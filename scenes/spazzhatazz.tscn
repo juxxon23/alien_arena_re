@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sca5e"]
 size = Vector2(40, 40)
 
-[node name="Spazzhatazz" type="CharacterBody2D"]
+[node name="Spazzhatazz" type="CharacterBody2D" groups=["objs"]]
 script = ExtResource("1_i25w7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

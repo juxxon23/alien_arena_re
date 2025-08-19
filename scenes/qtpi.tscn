@@ -48,7 +48,7 @@ animations = [{
 radius = 9.75
 height = 21.0
 
-[node name="Qtpi" type="CharacterBody2D"]
+[node name="Qtpi" type="CharacterBody2D" groups=["objs"]]
 script = ExtResource("1_58g3w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

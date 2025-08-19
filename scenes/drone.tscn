@@ -47,7 +47,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxcwj"]
 size = Vector2(36.3333, 21.3333)
 
-[node name="Drone" type="CharacterBody2D"]
+[node name="Drone" type="CharacterBody2D" groups=["objs"]]
 scale = Vector2(3, 3)
 motion_mode = 1
 script = ExtResource("1_knnud")

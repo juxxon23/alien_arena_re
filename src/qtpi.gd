@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 var player_owner : String
 var player_opponent: Variant
+var can_move : bool = true
 
 
 func _ready() -> void:
@@ -14,6 +15,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not can_move:
+		return
+	
 	if player_opponent == null:
 		return
 	
@@ -26,6 +30,16 @@ func _physics_process(delta: float) -> void:
 			get_tree().call_group("score", "add_score", player_owner, 20)
 			queue_free()
 	
+
+func exploded_obj(body_obj: Variant) -> void:
+	if body_obj == self:
+		queue_free()
+
+
+func obj_move(body_name: String, opt: bool) -> void:
+	if body_name == self.name:
+		can_move = opt
+
 
 func set_coll_layer(layers: Array) -> void:
 	var layer_sum : int = 0

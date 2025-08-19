@@ -29,6 +29,7 @@ right="Group of pieces in the right quadrant"
 left="Group of pieces in the left quadrant"
 score=""
 walls="Group for borders of the arena"
+objs="Group for interaction between objects"
 
 [input]
 

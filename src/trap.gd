@@ -4,6 +4,7 @@ extends Area2D
 
 var player_owner : String
 var player_stucked : String
+var obj_stucked : String
 
 
 func _ready() -> void:
@@ -11,14 +12,23 @@ func _ready() -> void:
 	
 
 func _on_body_entered(body: Node2D) -> void:
-	player_stucked = body.name
-	get_tree().call_group("builders", "player_move", player_stucked, false)
+	if body is Drone or body is Qtpi or body is Spazzhatazz:
+		obj_stucked = body.name
+		get_tree().call_group("objs", "obj_move", obj_stucked, false)
+	else:
+		player_stucked = body.name
+		get_tree().call_group("builders", "player_move", player_stucked, false)
 	
 	$Timer.start()
 	
 
 func _on_timer_timeout() -> void:
-	get_tree().call_group("builders", "player_move", player_stucked, true)	
+	if obj_stucked:
+		get_tree().call_group("objs", "obj_move", obj_stucked, true)
+		obj_stucked = ""
+	else:
+		get_tree().call_group("builders", "player_move", player_stucked, true)
+		player_stucked = ""
 
 
 func set_coll_layer(layers: Array) -> void:
