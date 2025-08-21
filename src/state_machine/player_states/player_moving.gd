@@ -1,6 +1,11 @@
 class_name PlayerMoving
 extends StateBase
 
+var frame_down_index : int = 0
+var frame_up_index : int = 0
+var frame_right_index : int = 0
+var frame_left_index : int = 0
+
 
 func on_physics_process(_delta: float) -> void:
 	movement()
@@ -11,8 +16,19 @@ func on_input(_event: InputEvent) -> void:
 
 
 func movement_direction() -> void:
-	controlled_node.direction.x = Input.get_axis("ui_left", "ui_right")
-	controlled_node.direction.y = Input.get_axis("ui_up", "ui_down")
+	controlled_node.direction = Vector2.ZERO
+	if Input.is_action_pressed("ui_right"):
+		frame_right_index = controlled_node.set_frame("walk_right", frame_right_index)
+		controlled_node.direction.x = 1
+	if Input.is_action_pressed("ui_left"):
+		frame_left_index = controlled_node.set_frame("walk_left", frame_left_index)
+		controlled_node.direction.x = -1
+	if Input.is_action_pressed("ui_down"):
+		frame_down_index = controlled_node.set_frame("walk_down", frame_down_index)
+		controlled_node.direction.y = 1
+	if Input.is_action_pressed("ui_up"):
+		frame_up_index = controlled_node.set_frame("walk_up", frame_up_index)
+		controlled_node.direction.y = -1
 	
 	
 func movement() -> void:

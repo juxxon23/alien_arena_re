@@ -4,7 +4,7 @@ extends CharacterBody2D
 ## It handles movement, collecting pieces, building actions,
 ## flushing collected pieces, and placing objects on the board.
 
-const SPEED = 500 # (pixels/sec)
+const SPEED = 350 # (pixels/sec)
 
 var direction : Vector2
 var can_move : bool = true
@@ -12,7 +12,8 @@ var current_color : String
 var quadrant : String = "r"
 var pieces_count : int = 0
 var must_build : bool = false
-
+var sprite_frames = [0, 1, 2, 3] # frames en orden: parado, pie1, parado, pie2
+var frames_size : int = 4
 
 func _input(_event: InputEvent) -> void:
 	flush()
@@ -63,3 +64,11 @@ func check_must_build() -> void:
 func player_move(body_name: String, opt: bool) -> void:
 	if body_name == self.name:
 		can_move = opt
+		
+
+func set_frame(anim: String, frame_index: int) -> int:
+	frame_index = (frame_index + 1) % frames_size
+	$AnimatedSprite2D.animation = anim
+	$AnimatedSprite2D.frame = sprite_frames[frame_index]
+	return frame_index
+	
