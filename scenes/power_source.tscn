@@ -1,20 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://doq8lbjphk0c6"]
+[gd_scene load_steps=13 format=3 uid="uid://doq8lbjphk0c6"]
 
-[ext_resource type="Texture2D" uid="uid://cqcikt4yl1ck2" path="res://icon.svg" id="1_00ly7"]
 [ext_resource type="Script" uid="uid://fpbfbrfgy600" path="res://src/power_source.gd" id="1_5kvrx"]
+[ext_resource type="Texture2D" uid="uid://cohm4h4vai5j6" path="res://assets/power_source_sprites/ps0.png" id="2_nmi5o"]
+[ext_resource type="Texture2D" uid="uid://qeq3s5shy8sw" path="res://assets/power_source_sprites/ps1.png" id="3_8wama"]
 [ext_resource type="Script" uid="uid://p3t745npcfqs" path="res://src/ps_timer.gd" id="3_aa43d"]
+[ext_resource type="Texture2D" uid="uid://iyswd8t37o8d" path="res://assets/power_source_sprites/ps3.png" id="4_aij6y"]
+[ext_resource type="Texture2D" uid="uid://daff463webual" path="res://assets/power_source_sprites/ps2.png" id="5_4haix"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2y6r"]
+atlas = ExtResource("2_nmi5o")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13gu4"]
+atlas = ExtResource("3_8wama")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6ws3"]
+atlas = ExtResource("4_aij6y")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6ypn"]
+atlas = ExtResource("5_4haix")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wg0ax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2y6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13gu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6ws3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6ypn")
+}],
+"loop": true,
+"name": &"power_source",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kvrx"]
-size = Vector2(127, 127)
+size = Vector2(20, 16.6667)
 
 [node name="PowerSource" type="Area2D"]
+scale = Vector2(6, 6)
 script = ExtResource("1_5kvrx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_00ly7")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 3)
+sprite_frames = SubResource("SpriteFrames_wg0ax")
+animation = &"power_source"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_5kvrx")
 

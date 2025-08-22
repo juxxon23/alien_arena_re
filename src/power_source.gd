@@ -11,3 +11,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_ps_timer_timeout() -> void:
 	set_visible(true)
+	$AnimatedSprite2D.play("power_source")
