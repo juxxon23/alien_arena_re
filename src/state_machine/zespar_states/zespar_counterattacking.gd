@@ -40,6 +40,7 @@ func on_physics_process(_delta: float) -> void:
 		return
 			
 	controlled_node.direction = controlled_node.position.direction_to(obj_pos)
+	controlled_node.check_direction()
 	controlled_node.velocity = controlled_node.direction * controlled_node.speed
 	controlled_node.move_and_slide()
 	

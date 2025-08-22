@@ -12,7 +12,7 @@ var current_color : String
 var quadrant : String = "r"
 var pieces_count : int = 0
 var must_build : bool = false
-var sprite_frames = [0, 1, 2, 3] # frames en orden: parado, pie1, parado, pie2
+var sprite_frames = [0, 1, 2, 3]
 var frames_size : int = 4
 
 func _input(_event: InputEvent) -> void:
