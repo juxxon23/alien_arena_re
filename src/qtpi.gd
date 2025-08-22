@@ -8,21 +8,25 @@ extends CharacterBody2D
 var player_owner : String
 var player_opponent: Variant
 var can_move : bool = true
+var direction : Vector2
 
 
 func _ready() -> void:
-	$AnimatedSprite2D.play("walking")
+	$AnimatedSprite2D.play("idle")
 
 
 func _physics_process(delta: float) -> void:
 	if not can_move:
+		$AnimatedSprite2D.play("idle")
 		return
 	
 	if player_opponent == null:
 		return
 	
 	if position != Vector2.ZERO:
-		var direction = position.direction_to(player_opponent.position)
+		$AnimatedSprite2D.play("walking")
+		direction = position.direction_to(player_opponent.position)
+		check_direction()
 		velocity = direction * speed
 		
 		var collision = move_and_collide(velocity * delta)
@@ -63,3 +67,11 @@ func set_player_owner(body_name: String) -> void:
 	
 func set_player_opponent(player: Variant) -> void:
 	player_opponent = player
+
+
+func check_direction() -> void:
+	if direction.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.flip_h = false
+		

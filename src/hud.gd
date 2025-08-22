@@ -51,8 +51,9 @@ func add_score(body_name, score) -> void:
 		
 
 func reload_timers_match() -> void:
-	get_tree().call_group("timers", "start_timer_action")
-	get_tree().call_group("builders", "set_initial_pieces")
+	if is_active:
+		get_tree().call_group("timers", "start_timer_action")
+		get_tree().call_group("builders", "set_initial_pieces")
 
 		
 func reset_scores() -> void:
