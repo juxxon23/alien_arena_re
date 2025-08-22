@@ -1,64 +1,58 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8g53ophncjc1"]
+[gd_scene load_steps=12 format=3 uid="uid://b8g53ophncjc1"]
 
-[ext_resource type="Texture2D" uid="uid://dcl70iovmosql" path="res://assets/drone.png" id="1_dil0n"]
 [ext_resource type="Script" uid="uid://5q3y7kswtken" path="res://src/drone.gd" id="1_knnud"]
+[ext_resource type="Texture2D" uid="uid://dxdomps7vnyaw" path="res://assets/drone_sprites/wl0.png" id="2_k1p8w"]
+[ext_resource type="Texture2D" uid="uid://cpoyfl11sme60" path="res://assets/drone_sprites/wl1.png" id="3_f6asb"]
+[ext_resource type="Texture2D" uid="uid://bhlsb61pufdml" path="res://assets/drone_sprites/wl2.png" id="4_nxcwj"]
+[ext_resource type="Texture2D" uid="uid://buuvo6bmys2jm" path="res://assets/drone_sprites/wl3.png" id="5_t4gt0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_knnud"]
-atlas = ExtResource("1_dil0n")
-region = Rect2(0, 0, 49, 21)
+[sub_resource type="AtlasTexture" id="AtlasTexture_746d6"]
+atlas = ExtResource("2_k1p8w")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1r4ts"]
-atlas = ExtResource("1_dil0n")
-region = Rect2(147, 0, 49, 21)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p7cs"]
+atlas = ExtResource("3_f6asb")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_umx5g"]
-atlas = ExtResource("1_dil0n")
-region = Rect2(98, 0, 49, 21)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxsdg"]
+atlas = ExtResource("4_nxcwj")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1p8w"]
-atlas = ExtResource("1_dil0n")
-region = Rect2(49, 0, 49, 21)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v1da"]
+atlas = ExtResource("5_t4gt0")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f6asb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_knnud")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1r4ts")
+"texture": SubResource("AtlasTexture_746d6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_umx5g")
+"texture": SubResource("AtlasTexture_4p7cs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k1p8w")
+"texture": SubResource("AtlasTexture_hxsdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v1da")
 }],
 "loop": true,
 "name": &"walking",
-"speed": 6.0
+"speed": 4.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxcwj"]
-size = Vector2(36.3333, 21.3333)
+size = Vector2(16, 5.33333)
 
 [node name="Drone" type="CharacterBody2D" groups=["objs"]]
-scale = Vector2(3, 3)
 motion_mode = 1
 script = ExtResource("1_knnud")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2.75, 0)
 sprite_frames = SubResource("SpriteFrames_f6asb")
 animation = &"walking"
-frame_progress = 0.779961
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3.5, 0)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_nxcwj")
