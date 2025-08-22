@@ -14,6 +14,10 @@ var player_opponent : Variant
 var can_move : bool = true
 
 
+func _ready() -> void:
+	$AnimatedSprite2D.play("moving")
+
+
 func _physics_process(delta: float) -> void:
 	if not can_move:
 		return
