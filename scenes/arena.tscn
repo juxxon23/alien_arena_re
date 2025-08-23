@@ -1,17 +1,48 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk51xaddm4edg"]
+[gd_scene load_steps=15 format=3 uid="uid://dk51xaddm4edg"]
 
 [ext_resource type="Script" uid="uid://1dw4snnx076k" path="res://src/sb_mid.gd" id="1_ubfh8"]
+[ext_resource type="Texture2D" uid="uid://clqanuxn2s6sv" path="res://assets/arena_sprites/h.png" id="1_xdvfk"]
+[ext_resource type="Texture2D" uid="uid://dgtj6swpy51l7" path="res://assets/arena_sprites/v.png" id="2_7ft05"]
 [ext_resource type="Script" uid="uid://fe3qcqqgxsbl" path="res://src/mid_timer.gd" id="2_wl4x5"]
+[ext_resource type="Texture2D" uid="uid://0t3k2gfw8f1g" path="res://assets/arena_sprites/ml.png" id="3_4ag8t"]
 [ext_resource type="Script" uid="uid://cjc51g8i3xh8j" path="res://src/area_left.gd" id="3_olpmc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g21bf"]
-size = Vector2(1200, 20)
+[ext_resource type="Texture2D" uid="uid://cj2goc6cmwohy" path="res://assets/arena_sprites/mu.png" id="4_dpxgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfh8"]
 size = Vector2(610, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpxgc"]
+atlas = ExtResource("3_4ag8t")
+region = Rect2(0, 0, 24, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oexds"]
+atlas = ExtResource("4_dpxgc")
+region = Rect2(0, 0, 24, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oexds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpxgc")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oexds")
+}],
+"loop": true,
+"name": &"unlocked",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_444vf"]
 size = Vector2(610, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g21bf"]
+size = Vector2(1200, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wl4x5"]
 size = Vector2(576, 600)
@@ -28,25 +59,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="SBTop" type="StaticBody2D" parent="." groups=["walls"]]
-collision_layer = 128
-collision_mask = 99
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SBTop"]
-position = Vector2(600, 50)
-shape = SubResource("RectangleShape2D_g21bf")
-
-[node name="SBBottom" type="StaticBody2D" parent="." groups=["walls"]]
-collision_layer = 128
-collision_mask = 99
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SBBottom"]
-position = Vector2(600, 680)
-shape = SubResource("RectangleShape2D_g21bf")
-
 [node name="SBLeft" type="StaticBody2D" parent="." groups=["walls"]]
 collision_layer = 128
 collision_mask = 99
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SBLeft"]
+position = Vector2(540, 366)
+scale = Vector2(0.84375, 0.905556)
+texture = ExtResource("2_7ft05")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SBLeft"]
 position = Vector2(10, 365)
@@ -56,6 +77,13 @@ shape = SubResource("RectangleShape2D_ubfh8")
 [node name="SBRight" type="StaticBody2D" parent="." groups=["walls"]]
 collision_layer = 128
 collision_mask = 99
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SBRight"]
+position = Vector2(680, 368)
+scale = Vector2(0.8125, 0.911111)
+texture = ExtResource("2_7ft05")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SBRight"]
 position = Vector2(1190, 365)
@@ -66,11 +94,57 @@ shape = SubResource("RectangleShape2D_ubfh8")
 collision_layer = 256
 collision_mask = 3
 script = ExtResource("1_ubfh8")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SBMid"]
+position = Vector2(600, 368)
+scale = Vector2(0.81, 0.911111)
+sprite_frames = SubResource("SpriteFrames_oexds")
+animation = &"locked"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SBMid"]
 position = Vector2(600, 365)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_444vf")
+
+[node name="SBTop" type="StaticBody2D" parent="." groups=["walls"]]
+collision_layer = 128
+collision_mask = 99
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SBTop"]
+position = Vector2(600, 344)
+scale = Vector2(0.9375, 0.844444)
+texture = ExtResource("1_xdvfk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SBTop"]
+position = Vector2(600, 50)
+shape = SubResource("RectangleShape2D_g21bf")
+
+[node name="SBBottom" type="StaticBody2D" parent="." groups=["walls"]]
+collision_layer = 128
+collision_mask = 99
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SBBottom"]
+position = Vector2(600, 963)
+scale = Vector2(0.9375, 0.813889)
+texture = ExtResource("1_xdvfk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SBBottom"]
+position = Vector2(600, 680)
+shape = SubResource("RectangleShape2D_g21bf")
+
+[node name="AreaLeft" type="Area2D" parent="." groups=["builders"]]
+position = Vector2(24, 64)
+collision_layer = 128
+collision_mask = 33
+script = ExtResource("3_olpmc")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaLeft"]
+position = Vector2(288, 300)
+shape = SubResource("RectangleShape2D_wl4x5")
 
 [node name="MidTimer" type="Timer" parent="." groups=["timers"]]
 process_callback = 0
@@ -78,16 +152,6 @@ wait_time = 17.0
 one_shot = true
 script = ExtResource("2_wl4x5")
 
-[node name="AreaLeft" type="Area2D" parent="." groups=["builders"]]
-position = Vector2(24, 64)
-collision_layer = 128
-collision_mask = 33
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaLeft"]
-position = Vector2(288, 300)
-shape = SubResource("RectangleShape2D_wl4x5")
-
-[connection signal="timeout" from="MidTimer" to="SBMid" method="_on_timer_timeout"]
 [connection signal="body_entered" from="AreaLeft" to="AreaLeft" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaLeft" to="AreaLeft" method="_on_body_exited"]
+[connection signal="timeout" from="MidTimer" to="SBMid" method="_on_timer_timeout"]

@@ -4,5 +4,10 @@ extends StaticBody2D
 ## through until the internal timer expires.
 
 
+func _ready() -> void:
+	$AnimatedSprite2D.animation = "locked"
+
+
 func _on_timer_timeout() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
+	$AnimatedSprite2D.animation = "unlocked"
