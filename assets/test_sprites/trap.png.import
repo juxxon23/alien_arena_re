@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcl70iovmosql"
-path="res://.godot/imported/drone.png-739d0b7a54fc5a8e0799fa245c21dd4a.ctex"
+uid="uid://drnt0oo8gy1qp"
+path="res://.godot/imported/trap.png-eac852d40ca9cf46524ec438e4e41f17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/drone.png"
-dest_files=["res://.godot/imported/drone.png-739d0b7a54fc5a8e0799fa245c21dd4a.ctex"]
+source_file="res://assets/test_sprites/trap.png"
+dest_files=["res://.godot/imported/trap.png-eac852d40ca9cf46524ec438e4e41f17.ctex"]
 
 [params]
 

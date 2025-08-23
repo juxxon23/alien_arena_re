@@ -13,7 +13,6 @@ config_version=5
 config/name="alien_arena_re"
 run/main_scene="uid://b12f0i6e07u1k"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [display]
 

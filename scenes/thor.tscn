@@ -152,7 +152,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(4.5, 7.66667)
+size = Vector2(4.5, 8.66667)
 
 [node name="Thor" type="CharacterBody2D" groups=["builders"]]
 scale = Vector2(6, 6)
@@ -163,7 +163,7 @@ sprite_frames = SubResource("SpriteFrames_oifss")
 animation = &"walk_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -2)
+position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_hqtel")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]

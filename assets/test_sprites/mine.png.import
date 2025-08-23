@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://payvgmlf3sia"
-path="res://.godot/imported/spazzhatazz.png-36afdce349056dd753c7aa3f2fd81222.ctex"
+uid="uid://d345s80corida"
+path="res://.godot/imported/mine.png-5b85265ac1d26ba4d910d80659fdfea5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spazzhatazz.png"
-dest_files=["res://.godot/imported/spazzhatazz.png-36afdce349056dd753c7aa3f2fd81222.ctex"]
+source_file="res://assets/test_sprites/mine.png"
+dest_files=["res://.godot/imported/mine.png-5b85265ac1d26ba4d910d80659fdfea5.ctex"]
 
 [params]
 
